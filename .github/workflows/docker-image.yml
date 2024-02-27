@@ -35,7 +35,7 @@ jobs:
       run: docker push bobbun/frontend:bitirme_project
 
     - name: Build DB Docker Image
-      run: docker build -t bobbun/backend:bitirme_project -f dockerfile.db ./react-express-mongodb
+      run: docker build -t bobbun/backend:bitirme_project -f db.dockerfile ./react-express-mongodb
 
     - name: Push DB Docker Image to Docker Hub
       run: docker push bobbun/mongo:bitirme_project
