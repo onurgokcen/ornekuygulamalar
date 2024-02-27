@@ -23,7 +23,7 @@ jobs:
         logout: false
           
     - name: Build Backend Docker Image
-      run: docker build -t bobbun/backend:bitirme_project ./backend
+      run: docker build -t bobbun/backend:bitirme_project ./react-express-mongodb/backend
 
     - name: Push Backend Docker Image to Docker Hub
       run: docker push bobbun/backend:bitirme_project
