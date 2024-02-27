@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Docker Images Build&Push
 
 on:
   workflow_dispatch:
@@ -27,3 +27,15 @@ jobs:
 
     - name: Push Backend Docker Image to Docker Hub
       run: docker push bobbun/backend:bitirme_project
+      
+    - name: Build Frontend Docker Image
+      run: docker build -t bobbun/frontend:bitirme_project ./react-express-mongodb/frontend
+
+    - name: Push Frontend Docker Image to Docker Hub
+      run: docker push bobbun/frontend:bitirme_project
+
+    - name: Build DB Docker Image
+      run: docker build -t bobbun/backend:bitirme_project -f dockerfile.db ./react-express-mongodb
+
+    - name: Push DB Docker Image to Docker Hub
+      run: docker push bobbun/mongo:bitirme_project
