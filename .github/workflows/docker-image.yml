@@ -1,0 +1,28 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Docker Login
+      uses: docker/login-action@v3.0.0
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        logout: false
+          
+    - name: Build Backend Docker Image
+      run: docker build -t bobbun/backend:bitirme_project ./backend
+
+    - name: Push Backend Docker Image to Docker Hub
+      run: docker push bobbun/backend:bitirme_project
